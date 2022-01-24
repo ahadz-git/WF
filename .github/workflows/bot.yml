@@ -24,14 +24,15 @@ jobs:
            git config --global user.email ${{ secrets.GH_MAIL }}
            git config --global credential.helper store
            echo "https://${{ secrets.GH_USERNAME }}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
-       - name: Cleanup storage
+       - name: Installing requirements
          run: |
-           sudo sh cleanup.sh
+           git clone https://${{ secrets.GH_USERNAME }}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.REPO }} -b master source; cd source || exit 1
+           docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t bot
        - name: Running bot
          timeout-minutes: 350
          continue-on-error: true
          run: |
-           sudo sh bot.sh
+           docker run --privileged --rm -i bot
        - name: Loop workflow
          continue-on-error: true
          run: |
