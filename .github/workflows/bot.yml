@@ -24,7 +24,7 @@ jobs:
            git config --global user.email ${{ secrets.GH_MAIL }}
            git config --global credential.helper store
            echo "https://${{ secrets.GH_USERNAME }}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
-       - name: Installing requirements
+       - name: Cleanup storage
          run: |
            sudo sh cleanup.sh
        - name: Installing requirements
