@@ -2,6 +2,8 @@ name: BOT
 
 on:
     push:
+      paths:
+        - 'loop.txt'
     workflow_dispatch:
     
 jobs:
