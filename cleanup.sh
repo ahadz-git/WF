@@ -4,8 +4,11 @@
 export DEBIAN_FRONTEND=noninteractive
 docker rmi -f $(docker images -q) &>/dev/null
 sudo -EH apt-fast -qq -y update &>/dev/null
-REL=$(grep "UBUNTU_CODENAME" /etc/os-release | cut -d'=' -f2)
-APT_Pac4Purge="alsa-topology-conf alsa-ucm-conf python2-dev python2-minimal libpython-dev libllvm-* llvm-12-linker-tools"
+if [ ${REL} == "focal" ]; then
+  APT_Pac4Purge="alsa-topology-conf alsa-ucm-conf python2-dev python2-minimal libpython-dev libllvm-* llvm-12-linker-tools"
+elif [ ${REL} == "bionic" ]; then
+  APT_Pac4Purge="python-dev libllvm6.0"
+fi
 sudo -EH apt-fast -qq -y purge \
   ${APT_Pac4Purge} \
   clang-* clang-format-* libclang-common-*-dev libclang-cpp* libclang1-* \
