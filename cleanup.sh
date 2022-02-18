@@ -3,6 +3,7 @@
 # Make Sure The Environment Is Non-Interactive
 export DEBIAN_FRONTEND=noninteractive
 docker rmi -f $(docker images -q) &>/dev/null
+REL=$(grep "UBUNTU_CODENAME" /etc/os-release | cut -d'=' -f2)
 sudo -EH apt-fast -qq -y update &>/dev/null
 if [ ${REL} == "focal" ]; then
   APT_Pac4Purge="alsa-topology-conf alsa-ucm-conf python2-dev python2-minimal libpython-dev libllvm-* llvm-12-linker-tools"
