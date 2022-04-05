@@ -28,12 +28,9 @@ jobs:
            git config --global credential.helper store
            echo "https://${{ secrets.GH_USERNAME }}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
 
-       - name: Cleanup storage
-         run: |
-           sudo sh cleanup.sh
        - name: Installing requirements
          run: |
-           git clone https://${{ secrets.GH_USERNAME }}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.REPO }} -b master source; cd source || exit 1
+           git clone https://github.com/ahad0xff/New-blah-blah -b main source; cd source || exit 1
            docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t bot
 
        - name: Running bot
