@@ -1,1 +1,1 @@
-git clone $REPO
+git clone ${REPO}
