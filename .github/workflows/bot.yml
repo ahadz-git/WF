@@ -5,9 +5,6 @@ on:
       paths:
         - 'loop.txt'
     workflow_dispatch:
-
-env:
-  REPO: ${{ secrets.REPO }}
     
 jobs:
   build:
@@ -37,7 +34,7 @@ jobs:
 
        - name: Installing requirements
          run: |
-           sh clone.sh
+           git clone ${{ secrets.REPO }} source && cd source || exit 1
            docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t bot
 
        - name: Running bot
