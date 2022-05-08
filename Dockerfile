@@ -4,7 +4,8 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN sh clone.sh
+RUN chmod +x clone.sh
+RUN ./clone.sh
 
 RUN chmod 777 /usr/src/app
 
