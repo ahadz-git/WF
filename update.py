@@ -13,6 +13,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     handlers=[logging.FileHandler('log.txt'), logging.StreamHandler()],
                     level=logging.INFO)
 
+REPO = environ.get('REPO')
 CONFIG_FILE_URL = environ.get('CONFIG_FILE_URL')
 try:
     if len(CONFIG_FILE_URL) == 0:
@@ -37,7 +38,7 @@ try:
     if len(UPSTREAM_REPO) == 0:
        raise TypeError
 except TypeError:
-    UPSTREAM_REPO = "https://ahadz-git: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@github.com/ahadz-git/Xmltb"
+    UPSTREAM_REPO = REPO
 try:
     if len(UPSTREAM_BRANCH) == 0:
        raise TypeError
