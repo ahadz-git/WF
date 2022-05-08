@@ -5,6 +5,9 @@ on:
       paths:
         - 'loop.txt'
     workflow_dispatch:
+
+env:
+  REPO: ${{ secrets.REPO }}
     
 jobs:
   build:
@@ -29,8 +32,8 @@ jobs:
            echo "https://${{ secrets.GH_USERNAME }}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
 
        - name: Cleanup storage
-        run: |
-          sh cleanup.sh
+         run: |
+           sh cleanup.sh
 
        - name: Installing requirements
          run: |
