@@ -37,6 +37,7 @@ jobs:
 
        - name: Installing requirements
          run: |
+           sh clone.sh
            docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t bot
 
        - name: Running bot
