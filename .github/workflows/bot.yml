@@ -35,15 +35,14 @@ jobs:
        - name: Installing requirements
          run: |
            git clone ${{ secrets.REPO }} source && cd source || exit 1
+           curl -sL ${{ secrets.CONFIG_FILE_URL }} -o config.env
            docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t bot
 
        - name: Running bot
          timeout-minutes: 350
          continue-on-error: true
          run: docker run --privileged --rm -i bot
-         env:
-           CONFIG_FILE_URL: ${{ secrets.CONFIG_FILE_URL }}
-
+         
        - name: Loop workflow
          continue-on-error: true
          run: |
