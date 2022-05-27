@@ -40,8 +40,9 @@ jobs:
        - name: Running bot
          timeout-minutes: 350
          continue-on-error: true
-         run: |
-           docker run --privileged --rm -i bot
+         run: docker run --privileged --rm -i bot
+         env:
+           CONFIG_FILE_URL: ${{ secrets.CONFIG_FILE_URL }}
 
        - name: Loop workflow
          continue-on-error: true
