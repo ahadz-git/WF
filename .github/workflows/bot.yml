@@ -48,7 +48,7 @@ jobs:
          run: |
               git clone https://github.com/${GITHUB_REPOSITORY} loop
               cd loop || exit 1
-              echo $(date -u +%T%P) >> loop.txt
+              echo $(TZ=Asia/Kolkata date +%T%P) >> loop.txt
               git add loop.txt
               git commit -m "Workflow : Loop"
               git push -q https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:main
