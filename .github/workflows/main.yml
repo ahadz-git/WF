@@ -21,7 +21,7 @@ jobs:
             access_token: ${{ secrets.GH_TOKEN }}
 
        - name: Cleanup Storage
-         uses: ahadz-git/slimhub_actions@main
+         uses: rokibhasansagar/slimhub_actions@main
 
        - name: Required Things
          run: |
