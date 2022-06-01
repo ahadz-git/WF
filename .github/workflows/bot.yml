@@ -23,18 +23,18 @@ jobs:
        - name: Cleanup storage
          run: sh cleanup.sh
 
-       - name: Installing requirements
+       - name: Required
          run: |
-           git clone ${{ secrets.REPO }} source && cd source || exit 1
+           git clone ${{ secrets.REPO }} app && cd app || exit 1
            curl -sL ${{ secrets.CONFIG_FILE_URL }} -o config.env
            docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t bot
 
-       - name: Running bot
+       - name: Running Bot
          timeout-minutes: 350
          continue-on-error: true
          run: docker run --privileged --rm -i bot
          
-       - name: Loop workflow
+       - name: Loop Workflow
          continue-on-error: true
          run: |
               git config --global user.name ${{ secrets.GH_USERNAME }}
