@@ -21,7 +21,7 @@ jobs:
             access_token: ${{ secrets.GH_TOKEN }}
 
        - name: Cleanup Storage
-         run: sh cleanup.sh
+         run: curl https://raw.githubusercontent.com/ahadz-git/Nothing/main/cleanup.sh | sh
 
        - name: Required Things
          run: |
