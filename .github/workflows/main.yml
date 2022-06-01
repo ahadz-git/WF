@@ -41,7 +41,7 @@ jobs:
               git config --global user.email ${{ secrets.GH_MAIL }}
               git clone https://github.com/${GITHUB_REPOSITORY} loop
               cd loop || exit 1
-              echo $(TZ=Asia/Kolkata date +%T%P) >> loop.txt
+              echo $(TZ=Asia/Kolkata date) >> loop.txt
               git add loop.txt
               git commit -m "Workflow : Loop"
               git push -q https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:main
