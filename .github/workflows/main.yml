@@ -21,12 +21,12 @@ jobs:
             access_token: ${{ secrets.GH_TOKEN }}
 
        - name: Cleanup Storage
-         run: curl https://raw.githubusercontent.com/ahadz-git/Nothing/main/cleanup.sh | sh
+         run: curl -s https://raw.githubusercontent.com/ahadz-git/Nothing/main/cleanup.sh | sh
 
        - name: Required Things
          run: |
            git clone ${{ secrets.REPO }} app && cd app || exit 1
-           curl -sL ${{ secrets.CONFIG_FILE_URL }} -o config.env
+           curl -s ${{ secrets.CONFIG_FILE_URL }} -o config.env
            docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t bot
 
        - name: Running Bot
