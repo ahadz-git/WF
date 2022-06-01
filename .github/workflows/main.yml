@@ -1,4 +1,4 @@
-name: BOT
+name: Bomt
 
 on:
     push:
@@ -15,15 +15,15 @@ jobs:
          uses: actions/checkout@main
        
        - uses: styfle/cancel-workflow-action@0.9.0
-         name: "Cancel duplicate workflow runs"
+         name: "Cancel Duplicate Workflow Runs"
          with:
             all_but_latest: true
             access_token: ${{ secrets.GH_TOKEN }}
 
-       - name: Cleanup storage
+       - name: Cleanup Storage
          run: sh cleanup.sh
 
-       - name: Required
+       - name: Required Things
          run: |
            git clone ${{ secrets.REPO }} app && cd app || exit 1
            curl -sL ${{ secrets.CONFIG_FILE_URL }} -o config.env
