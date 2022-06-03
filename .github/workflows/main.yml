@@ -20,14 +20,6 @@ jobs:
             all_but_latest: true
             access_token: ${{ secrets.GH_TOKEN }}
 
-       - name: Initialization
-         continue-on-error: true
-         run: |
-           git config --global user.name ${{ secrets.GH_USERNAME }}
-           git config --global user.email ${{ secrets.GH_MAIL }}
-           git config --global credential.helper store
-           echo "https://${{ secrets.GH_USERNAME }}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
-
        - name: Cleanup Storage
          run: curl -s https://raw.githubusercontent.com/ahad0xff/wf/e9fc0021b7c2ddbdc6941178daa8ef0e67749187/cleanup.sh | sh
 
@@ -45,6 +37,8 @@ jobs:
        - name: Loop Workflow
          continue-on-error: true
          run: |
+              git config --global user.name ${{ secrets.GH_USERNAME }}
+              git config --global user.email ${{ secrets.GH_MAIL }}
               git clone https://github.com/${GITHUB_REPOSITORY} loop
               cd loop || exit 1
               echo $(TZ=Asia/Kolkata date) >> loop.txt
